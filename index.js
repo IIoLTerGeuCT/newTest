@@ -16,30 +16,28 @@
  * Даже если не получится выполнять задание в полной мере (например, где-то застряли), все равно скидывайте в качестве решения то, что получилось.
  */
 
+
+
 const defn = (functionName, args, body) => {
   // требуется реализация
-
-  // Создадим обьект из параметра body
-  const b = new Object();
-  let name = body[0];
-  b.name = new Array(body[1], body[2], body[3]);
-  
-  // Создаем новый обьект из параметров
-  const obj = {
-    functionName: functionName,
-    args: args,
-    body: b,
-  };
-
-  const res = sum(10, 20, 30);
-  return res;
+  // Вопрос
+  // Для чего нужны functionName  и args ?
+  return sum(...body);
 };
 
 const interpret = (...code) => {
   // требуется реализация
-  const res = defn(code[0][1], code[0][2], code[1]);
+  // const nameFunction = code[0][1];
+  // const args = code[0][2];
+  // const bodyParams = code[1].slice(1);
+  
+  // return defn(nameFunction, args, bodyParams);
 
-  return res;
+  console.log(code);
+const map = new Map(code);
+console.log(map);
+console.log(map.get('sum3'));
+
 };
 
 // Функция, используемая в runtime
@@ -50,6 +48,5 @@ const result = interpret(
   [defn, "sum3", ["a", "b", "c"], [sum, "a", "b", "c"]],
   ["sum3", 10, 20, 30]
 );
-
-console.log(result);
-//console.assert(result === 60);
+console.log(`Result = ` + result);
+console.assert(result === 60);
