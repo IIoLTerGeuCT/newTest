@@ -16,8 +16,6 @@
  * Даже если не получится выполнять задание в полной мере (например, где-то застряли), все равно скидывайте в качестве решения то, что получилось.
  */
 
-
-
 const defn = (functionName, args, body) => {
   // требуется реализация
   // Вопрос
@@ -27,17 +25,14 @@ const defn = (functionName, args, body) => {
 
 const interpret = (...code) => {
   // требуется реализация
-  // const nameFunction = code[0][1];
-  // const args = code[0][2];
-  // const bodyParams = code[1].slice(1);
-  
-  // return defn(nameFunction, args, bodyParams);
 
-  console.log(code);
-const map = new Map(code);
-console.log(map);
-console.log(map.get('sum3'));
+  const map = new Map();
+  map
+    .set("functionName", code[0][1])
+    .set("args", code[0][2])
+    .set("body", code[1].slice(1));
 
+  return defn(map.get("functionName"), map.get("args"), map.get("body"));
 };
 
 // Функция, используемая в runtime
@@ -48,5 +43,4 @@ const result = interpret(
   [defn, "sum3", ["a", "b", "c"], [sum, "a", "b", "c"]],
   ["sum3", 10, 20, 30]
 );
-console.log(`Result = ` + result);
 console.assert(result === 60);
